@@ -1,40 +1,69 @@
-
-
-<body style="background: #F6F4F4; padding-bottom: 10vh;">
-   <div class = "container-fluid" style="background: #51A8BB; padding-bottom: 2vh;">
-        <h4 style="margin-top:4vh">Co Win Slots </h4>
+ <body style="margin-bottom: 100vh">
+    <div class = "container-fluid" style="background: #51A8BB;margin:0px;padding-bottom: 1vh;padding-top: 0px;">
+                <h4 style="padding-top:2vh;display: inline-block;margin-right: 0.4vw"> Slotz</h4> <h6 style="display: inline-block;"> inc </h6>
     </div>
-    <div class="container">
-        <div class="row col-sm-4 center" style="margin-left: 20vw">
-                <h1>            CoWin Slot Checker       </h1>
-                <h5 style="margin-left: 3vw"> We check for slots every 15 seconds </h5>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row" style="margin-top:8vw">
-        <div class="input-group mb-3">
-            <div class="input-group-addon">
-                <span class="input-group-text" id="basic-addon1">@</span>
+    <div style="background-image: url('./assets/images/banner-dec-right.png');padding-bottom: 22vh; margin: 0px; padding-top:0px;">
+        <div class="container">
+            <div class="row col-sm-4 center" style="margin-left: 25vw; padding-top: 15vh;">
+                    <h1>             Slot Checker       </h1>
             </div>
-            <input type="text" class="form-control" placeholder="Pincode" aria-label="Pincode" aria-describedby="basic-addon1">
+            <h5 style="margin-left: 23vw"> We check for slots every 15 seconds </h5>
         </div>
+        <div class="container">
+            <div class="row" style="margin-top:8vw">
+                <div class="input-group mb-3">
+                    <div class="input-group-addon">
+                        <span class="input-group-text" id="basic-addon1">Pincode</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Pincode" (blur) = "getPincode($event)" aria-label="Pincode" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <!--
+            <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Item 1</button>
+                        <button mat-menu-item>Item 2</button>
+                    </mat-menu>
+            -->
+        </div> 
+        <!--
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>  -->     
+    </div>
+    <div style="background-color: #bdffce;padding-bottom: 100vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" style="background-color: white; margin-top: 1vw">
+                        <img class="card-img-top" src="./assets/images/easy-use.png" alt="Card image cap" style="max-height: 12vh; max-width: 6vw;margin-left: 4.5vw;margin-top: 5vh">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center; ">Easy to Use</h5>
+                            <p class="card-text" style="padding-top: 5vh">One stop shop for checking slots in India. Simply enter your pincode and get notified when a slot is available.</p>
+                        </div>
+                </div>
+
+                <div class="col-sm-3" style="background-color: white;margin-left: 5vw; margin-top: 1vw">
+                        <img class="card-img-top" src="./assets/images/analysis.png" alt="Card image cap" style="max-height: 12vh; max-width: 6vw;margin-left: 4.5vw;margin-top: 5vh">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center">Instant Results</h5>
+                            <p class="card-text" style="padding-top: 5vh">We monitor CoWin every 15 seconds to ensure that you are notified immediately once slots are available</p>
+                        </div>
+                </div>
+
+                <div class="col-sm-3" style="background-color: white;margin-left: 5vw; margin-top: 1vw">
+                        <img class="card-img-top" src="./assets/images/email.png" alt="Card image cap" style="max-height: 12vh; max-width: 6vw;margin-left: 5.2vw;margin-top: 5vh">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center">Notification</h5>
+                            <p class="card-text" style="padding-top: 5vh">Comming Soon! Get Notified via email and SMS once the ban on the COWin API's are lifted.</p>
+                        </div>
+                </div>
+            </div>
         </div>
-        <div class="row" style="margin-bottom:8vh">
-              <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-              </div>
-        </div>
-         <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Item 1</button>
-                    <button mat-menu-item>Item 2</button>
-                </mat-menu>
-    </div> 
+    </div>
 </body>
