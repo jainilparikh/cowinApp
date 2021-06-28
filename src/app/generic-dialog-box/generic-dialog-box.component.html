@@ -1,12 +1,19 @@
-<h3 [hidden]="!data.available_capacity" > {{data.text}} </h3>
 
-<h6 [hidden]="data.available_capacity" > {{data.text}} </h6>
-<div *ngFor="let item of publishedData">
+<!-- Show String when user input is accepted -->
+<h3 [hidden]="!data.available_capacity"> {{data.text}} </h3>
 
-<h5 [hidden]="!data.available_capacity" style="font-size: 1vw"> Available Capacity: {{ item.availableQty}} </h5>
+<!-- Shows string when slots are found -->
+<h6 [hidden]="data.available_capacity"> {{data.text}} </h6>
 
-<h5 [hidden]="!data.min_age_limit" style="font-size: 1vw"> Minimum Age Limit: {{ item.ageLimit }} </h5>
-
-<h5 [hidden]="!data.place" style="font-size: 1vw"> Address: {{ item.locations }} </h5>
 <br>
+
+<!-- Iterate through the data received from API -->
+<div *ngFor="let item of publishedData">
+<!-- Display Available quantity -->
+    <h5 [hidden]="!data.available_capacity" style="font-size: 1vw"> Available Capacity: {{ item.availableQty}} </h5>
+    <!-- Display Minimum age limit -->
+    <h5 [hidden]="!data.min_age_limit" style="font-size: 1vw"> Minimum Age Limit: {{ item.ageLimit }} </h5>
+    <!-- Display address -->
+    <h5 [hidden]="!data.place" style="font-size: 1vw"> Address: {{ item.locations }} </h5>
+    <br>
 </div>

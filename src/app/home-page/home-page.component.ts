@@ -22,8 +22,14 @@ export class HomePageComponent implements OnInit {
   constructor(private http:HttpClient, public dialog: MatDialog, public ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    /*
+      Called when page is reloaded
+     */
+
+    // Get recent date
     this.date = (formatDate(new Date(), 'dd-MM-yyyy', 'en'));
-    this.sound = new Howl({
+    // Alert Sound
+    this.sound = new Howl({                  
       src: ['./assets/audio/siren.mp3']
     });
     
@@ -37,6 +43,8 @@ export class HomePageComponent implements OnInit {
       
       $event.target.value = "";
       this.ref.detectChanges();
+
+      // Open Dialog box when user input is accepted.
       const dialogRef = this.dialog.open(GenericDialogBoxComponent, {
         data: {
           "text": "Request Successfully Accepted! Due to constraints with the CoWin API's please keep the tab open so the website can sync with the servers You will receive an Alert when slots are available",
@@ -45,6 +53,9 @@ export class HomePageComponent implements OnInit {
         }
       });
 
+      this.fetchDetails(pincode);
+
+      // Schedule calling the API for every 15 seconds
       const source = interval(15000);
       this.subscribe = source.subscribe(val => this.fetchDetails(pincode));
   }
@@ -58,50 +69,60 @@ export class HomePageComponent implements OnInit {
     var locations;
     var headers = {
     }
-    this.http.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + pincode + "&date=" + this.date,{headers}).subscribe((data) => 
-    {
-      console.log(data)
-      locations = []
-      availableQty = []
-      ageLimit = []
 
-      for(var i = 0; i < data['centers'].length; i++)  
-        {
-          var sessions = data['centers'][i]['sessions'];
-          console.log("Location array to be flled");
-          locations.push(data['centers'][i]['name']);
-          console.log("Location array is filled");
-          for(var j = 0; j < sessions.length; j++)
+    //Call CoWin API
+    this.http.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + pincode + "&date=" + this.date,
+    {headers}).subscribe(
+      (data) => 
+      {
+        console.log(data)
+        locations = []
+        availableQty = []
+        ageLimit = []
+
+        // Iterate over JSON returned by the API and fetch useful information
+        for(var i = 0; i < data['centers'].length; i++)  
           {
-            var capacity = sessions[j]['available_capacity'];
-            console.log(sessions[j]['available_capacity']);
-            
-            console.log(capacity);
-
-            if( capacity > 0)
-              {
-                availableQty.push( sessions[j]['available_capacity'] );
-                ageLimit.push( sessions[j]["min_age_limit"] );
-                break;
-              }
-          }
-        }
-        console.log("Reached here")
-        console.log(locations);
-        if( availableQty.length > 0)
-        {
-          this.sound.play();
-          this.subscribe.unsubscribe();
-          const dialogRef = this.dialog.open(GenericDialogBoxComponent, {
-            data: {
-              "text": "Slots Found!!",
-              "available_capacity": availableQty,
-              "min_age_limit": ageLimit,
-              "place": locations
+            var sessions = data['centers'][i]['sessions'];
+            console.log("Location array to be flled");
+            locations.push(data['centers'][i]['name']);
+            console.log("Location array is filled");
+            for(var j = 0; j < sessions.length; j++)
+            {
+              var capacity = sessions[j]['available_capacity'];
+              console.log(sessions[j]['available_capacity']);
+              
+              console.log(capacity);
+              
+              // Checks if available slots at any center is > 0
+              if( capacity > 0)
+                {
+                  availableQty.push( sessions[j]['available_capacity'] );
+                  ageLimit.push( sessions[j]["min_age_limit"] );
+                  break;
+                }
             }
-          });
-        }
-    });
+          }
+
+          if( availableQty.length > 0)
+          {
+            this.sound.play();
+            this.subscribe.unsubscribe();
+
+            // Open Dialog box to show results from API.
+            const dialogRef = this.dialog.open(GenericDialogBoxComponent, {
+              data: {
+                "text": "Slots Found",
+                "available_capacity": availableQty,
+                "min_age_limit": ageLimit,
+                "place": locations
+              },
+              height: '400px',
+              width: '600px',
+            });
+          }
+      });
+
     return 'pincode Found';
   }
 

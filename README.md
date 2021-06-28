@@ -1,27 +1,23 @@
-# Cowinapp2
+# Introduction
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+It has become really difficult to find slots on CoWin(Indian Covid Vaccination registration platform). This website pings the CoWin API's periodically to fetch slot information and directly alert the user once slots are available.
 
-## Development server
+# Deployment
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The website is deployed using Netlify with the following URL: https://cowinslotz.netlify.app/
 
-## Code scaffolding
+# Workflow
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. User enters the pincode of his area and keeps the website open on a tab in his browser.
+2. The website periodically pings the CoWin API's to fetch slot updates.
+3. Once slots are found a notification sound alerts the user about the availability of slots and the address of the locations where the slots are available.
 
-## Build
+# Future plans
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Add load balancers and deploy the webApp on AWS.
+2. Add caching mechanism.
 
-## Running unit tests
+# References
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. All icons are sourced from: https://www.freepik.com/
+2. 
