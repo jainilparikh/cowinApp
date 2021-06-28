@@ -10,16 +10,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { GenericDialogBoxComponent } from './generic-dialog-box/generic-dialog-box.component';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { NewHomePageComponent } from './new-home-page/new-home-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    GenericDialogBoxComponent,
-    NewHomePageComponent
-  ],
+    GenericDialogBoxComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

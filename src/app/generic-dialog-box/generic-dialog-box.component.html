@@ -3,10 +3,10 @@
 <h6 [hidden]="data.available_capacity" > {{data.text}} </h6>
 <div *ngFor="let item of publishedData">
 
-<h5 [hidden]="!data.available_capacity"> Available Capacity: {{ item.availableQty}} </h5>
+<h5 [hidden]="!data.available_capacity" style="font-size: 1vw"> Available Capacity: {{ item.availableQty}} </h5>
 
-<h5 [hidden]="!data.min_age_limit"> Minimum Age Limit: {{ item.ageLimit }} </h5>
+<h5 [hidden]="!data.min_age_limit" style="font-size: 1vw"> Minimum Age Limit: {{ item.ageLimit }} </h5>
 
-<h5 [hidden]="!data.place"> Minimum Age Limit: {{ item.locations }} </h5>
+<h5 [hidden]="!data.place" style="font-size: 1vw"> Minimum Age Limit: {{ item.locations }} </h5>
 <br>
 </div>

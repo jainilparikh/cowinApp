@@ -5,7 +5,7 @@ import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-
 import { interval } from 'rxjs';
 import {formatDate} from '@angular/common';
 import { Howl } from 'howler';
-
+import {ChangeDetectorRef} from '@angular/core';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
   date;
   sound;
 
-  constructor(private http:HttpClient, public dialog: MatDialog) { }
+  constructor(private http:HttpClient, public dialog: MatDialog, public ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.date = (formatDate(new Date(), 'dd-MM-yyyy', 'en'));
@@ -35,6 +35,8 @@ export class HomePageComponent implements OnInit {
     */
       var pincode = $event.target.value;
       
+      $event.target.value = "";
+      this.ref.detectChanges();
       const dialogRef = this.dialog.open(GenericDialogBoxComponent, {
         data: {
           "text": "Request Successfully Accepted! Due to constraints with the CoWin API's please keep the tab open so the website can sync with the servers You will receive an Alert when slots are available",
