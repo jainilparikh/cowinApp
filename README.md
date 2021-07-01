@@ -15,7 +15,7 @@ The website is deployed using Netlify with the following URL: https://cowinslotz
 # Screenshot
 ![alt text](./src/assets/images/cowinApp_screenshot.png)
 
-# Future plans
+# Future plans  
 
 1. Add load balancers and deploy the webApp on AWS.
 2. Add caching mechanism.
