@@ -4,26 +4,26 @@ It has become really difficult to find slots on CoWin(Indian Covid Vaccination r
 
 # Deployment
 
-The website is deployed using Netlify with the following URL: https://cowinslotz.netlify.app/
+The website is deployed using Netlify with the following URL: https://cowinslotz.netlify.app/  
+  
+Alternatively,   
 
-Alternatively, 
-
-Install docker on your system and run the following commands:
-    Create the image:
-`  sudo docker build -t cowinapp:dev . `
-    Run the image on a local container:
-`  sudo docker run -p 1003:80 cowinapp:dev `
-Your application will run locally on localhost:1003
+Install docker on your system and run the following commands:  
+    1. Create the image:  
+`  sudo docker build -t cowinapp:dev . `  
+    2. Run the image on a local container:  
+`  sudo docker run -p 1003:80 cowinapp:dev `  
+Your application will run locally on localhost:1003  
 
 Well...
 
-If you just want to run the webApp on your local host:
-1. Clone the repo
-2. install node,npm and angular CLI then run:
-   ` npm install `
-2. ng serve
+If you just want to run the webApp on your local host:  
+1. Clone the repo  
+2. install node,npm and angular CLI then run:  
+   ` npm install `  
+3. ng serve  
 
-Be careful! This will run the application in a development server.
+Be careful! This will run the application in a development server.  
 
 # Workflow
 

@@ -10,21 +10,22 @@ import {HttpClientModule} from '@angular/common/http';
 import { GenericDialogBoxComponent } from './generic-dialog-box/generic-dialog-box.component';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { HomePageDialogBoxComponent } from './home-page-dialog-box/home-page-dialog-box.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    GenericDialogBoxComponent  ],
+    GenericDialogBoxComponent,
+    HomePageDialogBoxComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    NoopAnimationsModule
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],

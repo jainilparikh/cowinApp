@@ -6,12 +6,31 @@ import { interval } from 'rxjs';
 import {formatDate} from '@angular/common';
 import { Howl } from 'howler';
 import {ChangeDetectorRef} from '@angular/core';
-
+import { IpConfig } from '../../cowinAPIs';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { HomePageDialogBoxComponent } from '../home-page-dialog-box/home-page-dialog-box.component';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  styleUrls: ['./home-page.component.css'],
+  animations: [
+      trigger('show', [
+        transition('void <=> *', [
+          style({
+            opacity:0,
+            backgroundColor: 'yellow'
+          }),
+          animate(10000)
+        ])
+    ]),
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(2000)),
+    ]),
+  ]
 })
 export class HomePageComponent implements OnInit {
   intervalId;
@@ -30,7 +49,17 @@ export class HomePageComponent implements OnInit {
     this.date = (formatDate(new Date(), 'dd-MM-yyyy', 'en'));
     // Alert Sound
     this.sound = new Howl({                  
-      src: ['./assets/audio/siren.mp3']
+      src: ['./assets/audio/notification.mp3']
+    });
+
+     // Open Dialog box to show results from API.
+     const dialogRef = this.dialog.open(HomePageDialogBoxComponent, {
+      data: {
+        "title": "Welcome to SLOTz",
+        "body": "To view slots please fill in your area pincode. Keep the application open on a sepearate tab. We wiil check for slots in the provided pincode every 15 seconds. Once a slot is found a notification sound will inform you of slot availability.",
+      },
+      height: '400px',
+      width: '600px',
     });
     
   }
@@ -71,7 +100,8 @@ export class HomePageComponent implements OnInit {
     }
 
     //Call CoWin API
-    this.http.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + pincode + "&date=" + this.date,
+    var obj = new IpConfig();
+    this.http.get(obj.ipconfig['GET_PLACES_BY_PINCODE'] + pincode + "&date=" + this.date,
     {headers}).subscribe(
       (data) => 
       {
