@@ -1,0 +1,40 @@
+<div class="container" style="border-style: solid;width:300vw;height: 120vh">
+    
+    <!--Options Menu-->
+    <span>
+    State List:
+    </span>
+    <select name="state Names" id="states" (change)="onStateSelection($event)" style="margin-top: 5vh;width: 10vw">
+            <option value="AP">Andra Pradesh</option>
+            <option value="KA" selected>Karnataka</option>
+            <option value="DL">Delhi</option>
+            <option value="UP">Uttar Pradesh</option>
+        </select>
+
+    <br>
+    <br>
+    <div class="container-left" style="width:30vw;height: 40vh;float: left;border-right: solid;margin-left: 5vw;">
+        <div class="container-left" style="width:20vw;height: 40vh;">
+            
+            <canvas id="pievalue" >{{ chart }} </canvas>
+        </div>
+        <div class="container" style="float:right;margin-top: 10vh;padding-left: 5vw;">
+                <span>
+                    StateWise Distribution
+                </span>
+        </div>
+    </div>
+    <div style="width:20vw;height: 40vh;float: right;margin-right: 5vw;">
+      <div class="container-right" style="width:20vw;height: 40vh;padding-right:10px;">
+        
+        <canvas id="pievalue2" >{{ chart2 }} </canvas>
+      </div>
+       <div class="container" style="float:right;margin-top: 10vh;padding-left: 5vw;">
+                <span>
+                    CountryWise Distribution
+                </span>
+        </div>
+    </div>
+   
+</div>
+ 

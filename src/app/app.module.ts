@@ -11,14 +11,19 @@ import { GenericDialogBoxComponent } from './generic-dialog-box/generic-dialog-b
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { HomePageDialogBoxComponent } from './home-page-dialog-box/home-page-dialog-box.component';
-
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { SplashScreenStateService } from './services/splash-screen-state-service';
+import { VaccinationAnalyticsComponent } from './vaccination-analytics/vaccination-analytics.component';
+import { VaccinationAnalyticsService } from './vaccination-analytics/vaccination-analytics.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     GenericDialogBoxComponent,
-    HomePageDialogBoxComponent  ],
+    HomePageDialogBoxComponent,
+    SplashScreenComponent,
+    VaccinationAnalyticsComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +32,7 @@ import { HomePageDialogBoxComponent } from './home-page-dialog-box/home-page-dia
     BrowserAnimationsModule,
     MatMenuModule
   ],
-  providers: [],
+  providers: [SplashScreenStateService, VaccinationAnalyticsService],
   bootstrap: [AppComponent],
   entryComponents: [GenericDialogBoxComponent]
 })

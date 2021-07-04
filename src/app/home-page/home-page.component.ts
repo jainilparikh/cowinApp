@@ -9,6 +9,7 @@ import {ChangeDetectorRef} from '@angular/core';
 import { IpConfig } from '../../cowinAPIs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HomePageDialogBoxComponent } from '../home-page-dialog-box/home-page-dialog-box.component';
+import { SplashScreenStateService } from '../services/splash-screen-state-service';
 
 @Component({
   selector: 'app-home-page',
@@ -38,21 +39,30 @@ export class HomePageComponent implements OnInit {
   date;
   sound;
 
-  constructor(private http:HttpClient, public dialog: MatDialog, public ref: ChangeDetectorRef) { }
+  constructor(private http:HttpClient, public dialog: MatDialog, public ref: ChangeDetectorRef, private splashScreenStateService: SplashScreenStateService) { }
 
-  ngOnInit(): void {
+   delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+
+  async ngOnInit(): Promise<void> {
     /*
       Called when page is reloaded
      */
 
     // Get recent date
-    this.date = (formatDate(new Date(), 'dd-MM-yyyy', 'en'));
-    // Alert Sound
-    this.sound = new Howl({                  
-      src: ['./assets/audio/notification.mp3']
-    });
+      this.date = (formatDate(new Date(), 'dd-MM-yyyy', 'en'));
+      // Alert Sound
+      this.sound = new Howl({                  
+        src: ['./assets/audio/notification.mp3']
+      });
 
-     // Open Dialog box to show results from API.
+      setTimeout(() => {
+        this.splashScreenStateService.stop();
+      }, 5000);
+
+      await this.delay(5000);
+      // Open Dialog box to show results from API.
      const dialogRef = this.dialog.open(HomePageDialogBoxComponent, {
       data: {
         "title": "Welcome to SLOTz",
