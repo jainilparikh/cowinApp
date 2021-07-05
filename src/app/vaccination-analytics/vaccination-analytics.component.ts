@@ -15,6 +15,7 @@ export class VaccinationAnalyticsComponent implements OnInit {
   population;
   pending;
   noOfDistCases;  
+  lineChart;
 
   constructor(private VaccinationAnalyticsService: VaccinationAnalyticsService, private splashScreenStateService: SplashScreenStateService) { }
 
@@ -74,6 +75,7 @@ export class VaccinationAnalyticsComponent implements OnInit {
      */
     var cnt = 0;
     this.noOfDistCases = [];
+    var distNames: string[] = [];
     this.VaccinationAnalyticsService.getStateWiseData().subscribe(res => {
 
       var noOfDistricts = res[stateName]['districts'];
@@ -81,7 +83,7 @@ export class VaccinationAnalyticsComponent implements OnInit {
       
       for(var i of districts) {
         this.noOfDistCases.push(noOfDistricts[i]['total']['confirmed']);
-        
+        distNames.push(i);
         if( cnt == 4)
         {
           break;
@@ -89,7 +91,7 @@ export class VaccinationAnalyticsComponent implements OnInit {
         cnt = cnt + 1;
       }
 
-     // this.makeCharts();
+      this.makeLineChart(this.noOfDistCases, distNames);
 
     });
     
@@ -101,10 +103,30 @@ export class VaccinationAnalyticsComponent implements OnInit {
       Fetch statename from option menu
      */
     this.chart.destroy();
+    this.lineChart.destroy();
     var stateName = state.target.value;
     this.fetchStateData(stateName);
+    this.fetchDistrictData(stateName);
   }
 
+  makeLineChart(noOfDistCases, distNames)
+  {
+    this.lineChart = new Chart('lineChart', {
+      type: 'line',
+      data: {
+        labels: distNames,
+        datasets:[
+          {
+            label: "No of Cases districtWise",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            pointBackgroundColor: "rgba(75, 192, 121,1)",
+            data: noOfDistCases
+          }
+        ]
+      }
+    });
+  }
   makeCharts()
   {
     /*
