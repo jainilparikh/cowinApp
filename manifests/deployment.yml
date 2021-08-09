@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: jainilparikhcowinapp 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jainilparikhcowinapp
+  template:
+    metadata:
+      labels:
+        app: jainilparikhcowinapp 
+    spec:
+      containers:
+        - name: jainilparikhcowinapp 
+          image: jainil.azurecr.io/jainilparikhcowinapp
+          ports:
+          - containerPort: 80
